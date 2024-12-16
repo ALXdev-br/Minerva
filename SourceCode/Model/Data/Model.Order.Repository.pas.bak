@@ -1,0 +1,129 @@
+unit Model.Order.Repository;
+
+interface
+
+uses
+  Model.Interfaces.Data,
+  Model.Interfaces.Entity,
+  Base.Entity,
+  Order.Entity,
+  Controller.Factory.Query,
+  Controller.Factory.Entity,
+  Rtti,
+  Data.DB,
+  System.SysUtils;
+
+Type
+  TModelOrderRepository = class(TInterfacedObject, iEntityRepository)
+    private
+      FQuery : iQuery;
+      FEntity: TOrder;
+    public
+      //constructor Create;
+      constructor Create(Entity:TOrder);
+      destructor Destroy; override;
+      //class function New : iEntityRepository;
+      //class function New(Entity:iBaseEntity): iEntityRepository;
+
+      class function New(Entity:TOrder): iEntityRepository;
+
+      function List(Value : TDataSource) : iEntityRepository;
+      function ListFields(const Fields : String; DataSource : TDataSource) : iEntityRepository;
+      procedure LinkQuery(MasterDataSource: TDataSource);
+      procedure QueryOpen;
+      procedure QueryClose;
+      function  QueryActive:Boolean;
+  end;
+
+implementation
+
+
+{ TModelOrderRepository }
+
+//constructor TModelOrderRepository.Create;
+constructor TModelOrderRepository.Create(Entity:TOrder);
+begin
+  if Assigned(Entity)  then
+    FEntity := Entity
+  else
+    FEntity := TOrder(TControllerFactoryEntity.New.Entity(TBaseEntity(Entity)));
+
+  if Assigned(Entity)  then
+    FQuery  := TControllerFactoryQuery.New.Query(nil);
+end;
+
+destructor TModelOrderRepository.Destroy;
+begin
+
+  inherited;
+end;
+
+function TModelOrderRepository.ListFields(const Fields: String; DataSource: TDataSource): iEntityRepository;
+var
+  Tabela : string;
+  AuxFields:string;
+begin
+  Result := Self;
+  Tabela := FEntity.GetTableName;
+
+  if Trim(Fields) <> '' then
+    AuxFields :=  Fields
+  else
+    AuxFields :=  ' * ';
+
+//FQuery.SQL('SELECT ' + Fields + ' FROM TAB_ITEM');
+  FQuery.SQL(Format('SELECT %s FROM %s ', [AuxFields, Tabela]));
+  FQuery.Active(1);
+  DataSource.DataSet := FQuery.DataSet;
+end;
+
+procedure TModelOrderRepository.LinkQuery(MasterDataSource: TDataSource);
+begin
+  FQuery.DataSrc(MasterDataSource);
+end;
+
+function TModelOrderRepository.List(Value: TDataSource): iEntityRepository;
+var
+  Tabela : string;
+begin
+  Result := Self;
+  Tabela := FEntity.GetTableName;
+
+//FQuery.SQL('SELECT * FROM TAB_ORDERS');
+  FQuery.SQL(Format('SELECT * FROM %s',[Tabela]));
+  FQuery.Active(1);
+  Value.DataSet := FQuery.DataSet;
+end;
+{
+class function TModelItemRepository.New: iEntityRepository;
+begin
+  Result := Self.Create;
+end;
+}
+
+class function TModelOrderRepository.New(Entity:TOrder): iEntityRepository;
+begin
+//Result := Self.Create(Entity);
+  Result := Self.Create(Entity);
+end;
+
+procedure TModelOrderRepository.QueryOpen;
+begin
+  if Assigned(FQuery) then
+    FQuery.Active(1);
+end;
+
+procedure TModelOrderRepository.QueryClose;
+begin
+  if Assigned(FQuery) then
+    FQuery.Active(0);
+end;
+
+function TModelOrderRepository.QueryActive: Boolean;
+begin
+  Result := False;
+  if Assigned(FQuery) then
+    Result := FQuery.Active();
+end;
+
+end.

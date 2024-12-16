@@ -1,0 +1,163 @@
+unit Model.OrderItem.Repository;
+
+interface
+
+uses
+  Model.Interfaces.Data,
+  Model.Interfaces.Entity,
+  Base.Entity,
+  OrderItems.Entity,
+  Controller.Factory.Query,
+  Controller.Factory.Entity,
+  Rtti,
+  Data.DB,
+  System.SysUtils;
+
+Type
+  TModelOrderItemRepository = class(TInterfacedObject, iEntityRepository)
+    private
+      FQuery : iQuery;
+      FEntity: TOrderItems;
+    public
+      //constructor Create;
+      constructor Create(Entity:TOrderItems);
+      destructor Destroy; override;
+      //class function New : iEntityRepository;
+      //class function New(Entity:iBaseEntity): iEntityRepository;
+
+      class function New(Entity:TOrderItems): iEntityRepository;
+
+      function List(Value : TDataSource) : iEntityRepository;
+      function ListFields(const Fields : String; DataSource : TDataSource) : iEntityRepository;
+      procedure LinkQuery(MasterDataSource: TDataSource);
+      procedure QueryOpen;
+      procedure QueryClose;
+      function  QueryActive:Boolean;
+
+
+  end;
+
+implementation
+
+
+{ TModelOrderItemRepository }
+
+
+
+//constructor TModelOrderItemRepository.Create;
+constructor TModelOrderItemRepository.Create(Entity:TOrderItems);
+begin
+  if Assigned(Entity)  then
+    FEntity := Entity
+  else
+    FEntity := TOrderItems(TControllerFactoryEntity.New.Entity(TBaseEntity(Entity)));
+
+  if Assigned(Entity)  then
+    FQuery  := TControllerFactoryQuery.New.Query(nil);
+end;
+
+destructor TModelOrderItemRepository.Destroy;
+begin
+
+  inherited;
+end;
+
+function TModelOrderItemRepository.ListFields(const Fields: String; DataSource: TDataSource): iEntityRepository;
+var
+  Tabela : string;
+  AuxFields:string;
+begin
+  Result := Self;
+  Tabela := FEntity.GetTableName;
+
+  if Trim(Fields) <> '' then
+    AuxFields :=  Fields
+  else
+    AuxFields :=  ' * ';
+{
+//FQuery.SQL('SELECT ' + Fields + ' FROM TAB_ITEM');
+  FQuery.SQL(Format('SELECT %s FROM %s ', [AuxFields, Tabela]));
+  FQuery.Active(1);
+  DataSource.DataSet := FQuery.DataSet;
+}
+  AuxText := TStringBuilder.Create;
+  try
+  //FQuery.SQL('SELECT * FROM TAB_ORDERS');
+  //FQuery.SQL(Format('SELECT * FROM %s',[Tabela]));
+
+    AuxText.Append(';WITH CTE_OIT AS               ').
+	          Append('      SELECT TOI.cod_item_order').
+            Append('           , TOI.cod_order     ').
+            Append('           , TOI.cod_product   ').
+            Append('           , TIT.[name]        ').
+            Append('           , TOI.quantity      ').
+            Append('           , TOI.unit_price    ').
+            Append('           , TOI.total_item    ').
+            AppendFormat(' FROM %s TOI',    [Tabela]).
+            Append('       INNER JOIN tab_item AS TIT').
+            Append('               ON TIT.cod_product = TOI.cod_product').
+            AppendFormat(') SELECT %s FROM CTE_OIT ',[AuxFields]);
+    FQuery.SQL(AuxText.ToString);
+
+    FQuery.Active(1);
+    DataSource.DataSet := FQuery.DataSet;
+  finally
+    AuxText.Free;
+  end;
+
+
+
+
+end;
+
+procedure TModelOrderItemRepository.LinkQuery(MasterDataSource: TDataSource);
+begin
+  FQuery.DataSrc(MasterDataSource);
+end;
+
+function TModelOrderItemRepository.List(Value: TDataSource): iEntityRepository;
+var
+  Tabela : string;
+begin
+  Result := Self;
+  Tabela := FEntity.GetTableName;
+
+//FQuery.SQL('SELECT * FROM TAB_ORDERS_ITEM');
+//FQuery.SQL(Format('SELECT * FROM %s',[Tabela]));
+  FQuery.SQL(Format('SELECT * FROM %s WHERE cod_order = :cod_order ',[Tabela]));
+  FQuery.Active(1);
+  Value.DataSet := FQuery.DataSet;
+end;
+{
+class function TModelItemRepository.New: iEntityRepository;
+begin
+  Result := Self.Create;
+end;
+}
+
+class function TModelOrderItemRepository.New(Entity:TOrderItems): iEntityRepository;
+begin
+//Result := Self.Create(Entity);
+  Result := Self.Create(Entity);
+end;
+
+procedure TModelOrderItemRepository.QueryOpen;
+begin
+  if Assigned(FQuery) then
+    FQuery.Active(1);
+end;
+
+procedure TModelOrderItemRepository.QueryClose;
+begin
+  if Assigned(FQuery) then
+    FQuery.Active(0);
+end;
+
+function TModelOrderItemRepository.QueryActive: Boolean;
+begin
+  Result := False;
+  if Assigned(FQuery) then
+    Result := FQuery.Active();
+end;
+
+end.
