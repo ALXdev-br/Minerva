@@ -2,12 +2,10 @@ inherited ClientCRUDView: TClientCRUDView
   Caption = 'Client'
   ClientWidth = 965
   ExplicitWidth = 977
-  ExplicitHeight = 552
   TextHeight = 15
   inherited StatusBar1: TStatusBar
     Width = 965
-    ExplicitTop = 461
-    ExplicitWidth = 959
+    ExplicitWidth = 965
   end
   inherited TitleBarPanel1: TTitleBarPanel
     Width = 965
@@ -18,30 +16,25 @@ inherited ClientCRUDView: TClientCRUDView
     end
   end
   inherited CategoryPanelGroup1: TCategoryPanelGroup
-    ExplicitHeight = 412
+    ExplicitHeight = 421
     inherited CategoryPanel1: TCategoryPanel
-      ExplicitWidth = 224
+      ExplicitWidth = 245
     end
     inherited CategoryPanel2: TCategoryPanel
-      ExplicitWidth = 224
+      ExplicitWidth = 245
     end
   end
   inherited Panel2: TPanel
     Width = 716
-    ExplicitWidth = 710
-    ExplicitHeight = 412
+    ExplicitWidth = 716
     inherited PgeCtrView: TPageControl
       Width = 714
-      Height = 419
       ExplicitWidth = 708
-      ExplicitHeight = 410
       inherited TabSht_ListRecords: TTabSheet
         Caption = 'Clients'
         ExplicitWidth = 706
-        ExplicitHeight = 389
         inherited DBGrid1: TDBGrid
           Width = 706
-          Height = 364
           Columns = <
             item
               Color = cl3DLight
@@ -112,30 +105,25 @@ inherited ClientCRUDView: TClientCRUDView
             end>
         end
         inherited DBNavigator1: TDBNavigator
-          Top = 364
           Width = 706
           VisibleButtons = [nbFirst, nbPrior, nbNext, nbLast, nbCancel]
           Hints.Strings = ()
-          ExplicitTop = 355
           ExplicitWidth = 700
         end
       end
       inherited TabSht_ListRecordsMasterDetail: TTabSheet
         ExplicitWidth = 706
-        ExplicitHeight = 389
         inherited Splitter1: TSplitter
           Width = 706
           ExplicitWidth = 653
         end
         inherited DBNavCRUDDetail: TDBNavigator
-          Top = 364
           Width = 706
           Hints.Strings = ()
           ExplicitWidth = 706
         end
         inherited DBGrdCRUDDetail: TDBGrid
           Width = 706
-          Height = 182
         end
         inherited PnlCRUDMaster: TPanel
           Width = 706
@@ -153,7 +141,6 @@ inherited ClientCRUDView: TClientCRUDView
       inherited TabSht_FileRecord: TTabSheet
         Caption = 'Client Record'
         ExplicitWidth = 706
-        ExplicitHeight = 389
       end
     end
   end

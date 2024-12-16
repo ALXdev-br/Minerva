@@ -1,9 +1,10 @@
 inherited BaseModelView: TBaseModelView
   Caption = 'BaseModelView'
+  ClientHeight = 442
   ClientWidth = 616
   Menu = MainMnuModelBase
   ExplicitWidth = 628
-  ExplicitHeight = 496
+  ExplicitHeight = 505
   TextHeight = 15
   object MainMnuModelBase: TMainMenu
     Left = 288

@@ -51,9 +51,9 @@ var
   varId:Variant;
 begin
   inherited;
-  //varId := FDataSourceDefaultView.DataSet.FindField('cod_order').Value;
   varId := DtaSrcModelCRUDView.DataSet.FieldByName('cod_client').Value;
-  FEntity.ID := varId;
+  if Assigned(FEntity) then
+    FEntity.ID := varId;
 end;
 
 procedure TClientCRUDView.FormCreate(Sender: TObject);

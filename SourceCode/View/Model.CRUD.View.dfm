@@ -280,7 +280,7 @@ inherited ModelCRUDView: TModelCRUDView
         object Splitter1: TSplitter
           Left = 0
           Top = 173
-          Width = 715
+          Width = 709
           Height = 9
           Cursor = crVSplit
           Align = alTop
@@ -290,20 +290,18 @@ inherited ModelCRUDView: TModelCRUDView
         end
         object DBNavCRUDDetail: TDBNavigator
           Left = 0
-          Top = 373
-          Width = 715
+          Top = 364
+          Width = 709
           Height = 25
           DataSource = DtaSrcCRUDDetail
           Align = alBottom
           TabOrder = 0
-          ExplicitTop = 364
-          ExplicitWidth = 709
         end
         object DBGrdCRUDDetail: TDBGrid
           Left = 0
           Top = 182
-          Width = 715
-          Height = 191
+          Width = 709
+          Height = 182
           Align = alClient
           BorderStyle = bsNone
           DataSource = DtaSrcCRUDDetail
@@ -319,16 +317,15 @@ inherited ModelCRUDView: TModelCRUDView
         object PnlCRUDMaster: TPanel
           Left = 0
           Top = 0
-          Width = 715
+          Width = 709
           Height = 173
           Align = alTop
           BevelOuter = bvSpace
           TabOrder = 2
-          ExplicitWidth = 709
           object DBGrdCRUDMaster: TDBGrid
             Left = 1
             Top = 1
-            Width = 713
+            Width = 707
             Height = 146
             Align = alClient
             BorderStyle = bsNone
@@ -345,12 +342,11 @@ inherited ModelCRUDView: TModelCRUDView
           object DBNavCRUDMaster: TDBNavigator
             Left = 1
             Top = 147
-            Width = 713
+            Width = 707
             Height = 25
             DataSource = DtaSrcCRUDMaster
             Align = alBottom
             TabOrder = 1
-            ExplicitWidth = 707
           end
         end
       end

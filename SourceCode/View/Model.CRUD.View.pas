@@ -78,7 +78,6 @@ type
     procedure DtaSrcCRUDMasterDataChange(Sender: TObject; Field: TField);
     procedure Edit1Exit(Sender: TObject);
   private
-    { Private declarations }
     FSearchField:string;
     FColumnTitleClicked:string;
     FValueSearch:string;
@@ -86,7 +85,6 @@ type
     FDataSourceDefaultView:TDataSource;
     procedure DBGrid_TitleClick(Column: TColumn);
   published
-    //
     procedure SetSearchField(Value: string);
     procedure SetColumnTitleClicked(Value: string);
     procedure SetValueSearch(Value: string);
@@ -155,6 +153,7 @@ begin
       if MessageDlg('New information entered or edited that is not saved.'#13#10'Do you want to continue?'
                   , mtConfirmation,[mbYes, mbNo], 0, mbNo) = mrNo then
         begin
+           FDataSourceDefaultView.DataSet.Cancel;
            Exit;
         end
       else
@@ -221,7 +220,6 @@ end;
 procedure TModelCRUDView.ActRecordSaveExecute(Sender: TObject);
 var
   varActionStr:string;
-  varId:Variant;
 begin
   inherited;
   varActionStr := '';
@@ -246,10 +244,6 @@ begin
           if MessageDlg(Format('Confirm %s record? ',[varActionStr]),mtConfirmation,[mbYes, mbNo], 0, mbNo) = mrYes then
           begin
              FDataSourceDefaultView.DataSet.Post;
-             //varId := FDataSourceDefaultView.DataSet.FindField('cod_order').Value;
-             //varId := FDataSourceDefaultView.DataSet.FieldByName('cod_order').Value;
-             //FEntity.ID := varId;
-
           end
           else
             FDataSourceDefaultView.DataSet.Cancel;
@@ -366,6 +360,11 @@ procedure TModelCRUDView.DBGrdCRUDMasterKeyDown(Sender: TObject; var Key: Word;
   Shift: TShiftState);
 begin
   inherited;
+  if key = VK_RETURN then
+  begin
+     Key := 0;
+  end;
+
   if (Key = VK_DOWN) then
   begin
     with DBGrdCRUDMaster.DataSource do

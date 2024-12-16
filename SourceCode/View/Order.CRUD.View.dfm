@@ -3,7 +3,6 @@ inherited OrderCRUDView: TOrderCRUDView
   ClientHeight = 700
   ClientWidth = 949
   OnDestroy = FormDestroy
-  ExplicitTop = -202
   ExplicitWidth = 961
   ExplicitHeight = 763
   TextHeight = 15
@@ -127,11 +126,11 @@ inherited OrderCRUDView: TOrderCRUDView
     inherited PgeCtrView: TPageControl
       Width = 698
       Height = 630
-      ExplicitLeft = 1
-      ExplicitWidth = 692
-      ExplicitHeight = 621
+      ActivePage = TabSht_ListRecordsMasterDetail
+      ExplicitWidth = 698
+      ExplicitHeight = 630
       inherited TabSht_ListRecords: TTabSheet
-        Caption = 'Orders'
+        Caption = 'Orders List'
         ExplicitWidth = 690
         ExplicitHeight = 600
         inherited DBGrid1: TDBGrid
@@ -142,12 +141,12 @@ inherited OrderCRUDView: TOrderCRUDView
           Top = 575
           Width = 690
           Hints.Strings = ()
-          ExplicitTop = 575
-          ExplicitWidth = 690
+          ExplicitTop = 566
+          ExplicitWidth = 684
         end
       end
       inherited TabSht_ListRecordsMasterDetail: TTabSheet
-        Caption = 'Orders Items'
+        Caption = 'Orders'
         ExplicitWidth = 690
         ExplicitHeight = 600
         inherited Splitter1: TSplitter
@@ -161,8 +160,8 @@ inherited OrderCRUDView: TOrderCRUDView
           Width = 690
           VisibleButtons = [nbFirst, nbPrior, nbNext, nbLast, nbCancel]
           Hints.Strings = ()
-          ExplicitTop = 566
-          ExplicitWidth = 684
+          ExplicitTop = 575
+          ExplicitWidth = 690
         end
         inherited DBGrdCRUDDetail: TDBGrid
           Top = 398
@@ -276,7 +275,7 @@ inherited OrderCRUDView: TOrderCRUDView
         inherited PnlCRUDMaster: TPanel
           Width = 690
           Height = 389
-          ExplicitWidth = 684
+          ExplicitWidth = 690
           ExplicitHeight = 389
           inherited DBGrdCRUDMaster: TDBGrid
             Width = 688
@@ -359,7 +358,7 @@ inherited OrderCRUDView: TOrderCRUDView
             VisibleButtons = [nbFirst, nbPrior, nbNext, nbLast, nbCancel]
             Hints.Strings = ()
             ExplicitTop = 363
-            ExplicitWidth = 682
+            ExplicitWidth = 688
           end
         end
       end
