@@ -249,6 +249,7 @@ begin
              //varId := FDataSourceDefaultView.DataSet.FindField('cod_order').Value;
              //varId := FDataSourceDefaultView.DataSet.FieldByName('cod_order').Value;
              //FEntity.ID := varId;
+
           end
           else
             FDataSourceDefaultView.DataSet.Cancel;
