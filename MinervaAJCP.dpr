@@ -6,7 +6,6 @@ uses
   Order.Entity in 'SourceCode\Model\Class\Order.Entity.pas',
   Base.View in 'SourceCode\View\Base.View.pas' {BaseView},
   Main.View in 'SourceCode\View\Main.View.pas' {MainView},
-  Client.View.Prototype in 'SourceCode\View\Client.View.Prototype.pas' {ClientViewPrototype},
   Base.Model.View in 'SourceCode\View\Base.Model.View.pas' {BaseModelView},
   Base.Entity in 'SourceCode\Model\Class\Base.Entity.pas',
   Model.Interfaces.Data in 'SourceCode\Model\Interface\Model.Interfaces.Data.pas',

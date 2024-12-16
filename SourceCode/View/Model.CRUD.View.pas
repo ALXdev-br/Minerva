@@ -93,6 +93,7 @@ type
     procedure SetUseDataControls(Value:Boolean);
     procedure SetDataSourceDefaultView(DataSourceDefault:TDataSource);
     function GetDataSourceDefaultView:TDataSource;
+    procedure SearchRecord; virtual;
   public
     { Public declarations }
   end;
@@ -113,6 +114,11 @@ end;
 function TModelCRUDView.GetDataSourceDefaultView: TDataSource;
 begin
   Result := FDataSourceDefaultView;
+end;
+
+procedure TModelCRUDView.SearchRecord;
+begin
+  //
 end;
 
 procedure TModelCRUDView.SetColumnTitleClicked(Value: string);
@@ -178,17 +184,21 @@ begin
   inherited;
    if FSearchField = '' then
   begin
-    ShowMessage('Click on title column on grid for select field for search.')
-  end;
-
-  StatusBar1.SimpleText := Format('Search for [%s][%s][%s] Searching reacord...', [ FColumnTitleClicked, FSearchField, Edit1.Text]);
-  if not FDataSourceDefaultView.DataSet.Locate(FSearchField, FValueSearch,[loCaseInsensitive,loPartialKey]) then
+    StatusBar1.SimpleText := 'Click on title column on grid for select field for search.';
+    ShowMessage(StatusBar1.SimpleText);
+  end
+  else
   begin
-    StatusBar1.SimpleText := Format('Search for [%s][%s][%s] Record not found! ', [ FColumnTitleClicked, FSearchField, Edit1.Text]);
-    MessageDlg('Record not found!',mtInformation,[mbOK], 0);
-    StatusBar1.SimpleText := ''
+    StatusBar1.SimpleText := Format('Search for [%s][%s][%s] Searching reacord...', [ FColumnTitleClicked, FSearchField, Edit1.Text]);
+    if not FDataSourceDefaultView.DataSet.Locate(FSearchField, FValueSearch,[loCaseInsensitive,loPartialKey]) then
+    begin
+      StatusBar1.SimpleText := Format('Search for [%s][%s][%s] Record not found! [Tips] Use: %%<text to search>', [ FColumnTitleClicked, FSearchField, Edit1.Text]);
+      MessageDlg('Record not found!'#13#10'[Tips] Use: %<text to search>',mtInformation,[mbOK], 0);
+      StatusBar1.SimpleText := ''
+    end
+    else
+      StatusBar1.SimpleText := Format('Search for [%s][%s][%s] Record found! ', [ FColumnTitleClicked, FSearchField, Edit1.Text]);
   end;
-  StatusBar1.SimpleText := Format('Search for [%s][%s][%s] Record found! ', [ FColumnTitleClicked, FSearchField, Edit1.Text]);
 
   if Edit1.CanFocus then
     Edit1.SetFocus;
@@ -275,6 +285,8 @@ begin
   FSearchField := Column.FieldName;
   FColumnTitleClicked := Column.Title.Caption;
   StatusBar1.SimpleText := Format('Search for [%s][%s]', [FColumnTitleClicked, FSearchField]);
+  if Edit1.CanFocus then
+    Edit1.SetFocus;
 end;
 
 procedure TModelCRUDView.DBNavigator1Click(Sender: TObject; Button: TNavigateBtn);
@@ -318,6 +330,8 @@ begin
   inherited;
   if key = #13 then
   begin
+    if BtnRecordFind.CanFocus then
+      BtnRecordFind.SetFocus;
     BtnRecordFind.Click;
   end;
 end;

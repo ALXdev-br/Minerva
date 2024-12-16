@@ -3,8 +3,8 @@ inherited ModelCRUDView: TModelCRUDView
   ClientHeight = 498
   ClientWidth = 974
   Position = poOwnerFormCenter
-  ExplicitWidth = 992
-  ExplicitHeight = 570
+  ExplicitWidth = 986
+  ExplicitHeight = 561
   TextHeight = 15
   object StatusBar1: TStatusBar [0]
     Left = 0
@@ -15,8 +15,8 @@ inherited ModelCRUDView: TModelCRUDView
     ParentShowHint = False
     ShowHint = True
     SimplePanel = True
-    ExplicitTop = 487
-    ExplicitWidth = 965
+    ExplicitTop = 470
+    ExplicitWidth = 968
   end
   object TitleBarPanel1: TTitleBarPanel [1]
     Left = 0
@@ -24,14 +24,14 @@ inherited ModelCRUDView: TModelCRUDView
     Width = 974
     Height = 49
     CustomButtons = <>
-    ExplicitWidth = 965
+    ExplicitWidth = 968
     object StatusBar2: TStatusBar
       Left = 0
       Top = 30
-      Width = 980
+      Width = 974
       Height = 19
       Panels = <>
-      ExplicitWidth = 965
+      ExplicitWidth = 968
     end
   end
   object CategoryPanelGroup1: TCategoryPanelGroup [2]
@@ -46,7 +46,7 @@ inherited ModelCRUDView: TModelCRUDView
     HeaderFont.Name = 'Segoe UI'
     HeaderFont.Style = []
     TabOrder = 2
-    ExplicitHeight = 439
+    ExplicitHeight = 421
     object CategoryPanel1: TCategoryPanel
       Top = 0
       Height = 353
@@ -58,7 +58,6 @@ inherited ModelCRUDView: TModelCRUDView
       Font.Style = [fsBold]
       ParentFont = False
       TabOrder = 0
-      ExplicitWidth = 245
       object BtnRecordUpdate: TButton
         Left = 0
         Top = 130
@@ -207,7 +206,6 @@ inherited ModelCRUDView: TModelCRUDView
       Font.Style = [fsBold]
       ParentFont = False
       TabOrder = 1
-      ExplicitWidth = 245
       object BtnPrint: TButton
         Left = 0
         Top = 0
@@ -233,27 +231,25 @@ inherited ModelCRUDView: TModelCRUDView
     Align = alClient
     Caption = 'Panel2'
     TabOrder = 3
-    ExplicitWidth = 716
-    ExplicitHeight = 438
+    ExplicitWidth = 719
+    ExplicitHeight = 421
     object PgeCtrView: TPageControl
       Left = 1
       Top = 1
-      Width = 729
-      Height = 437
-      ActivePage = TabSht_ListRecordsMasterDetail
+      Width = 723
+      Height = 428
+      ActivePage = TabSht_ListRecords
       Align = alClient
       TabOrder = 0
-      ExplicitLeft = 8
-      ExplicitTop = 6
-      ExplicitWidth = 651
-      ExplicitHeight = 424
+      ExplicitWidth = 717
+      ExplicitHeight = 419
       object TabSht_ListRecords: TTabSheet
         Caption = 'List Records'
         object DBGrid1: TDBGrid
           Left = 0
           Top = 0
-          Width = 721
-          Height = 382
+          Width = 715
+          Height = 373
           Align = alClient
           DataSource = DtaSrcModelCRUDView
           TabOrder = 0
@@ -267,15 +263,13 @@ inherited ModelCRUDView: TModelCRUDView
         end
         object DBNavigator1: TDBNavigator
           Left = 0
-          Top = 382
-          Width = 721
+          Top = 373
+          Width = 715
           Height = 25
           DataSource = DtaSrcModelCRUDView
           VisibleButtons = [nbFirst, nbPrior, nbNext, nbLast, nbPost, nbCancel, nbRefresh]
           Align = alBottom
           TabOrder = 1
-          ExplicitTop = 378
-          ExplicitWidth = 666
         end
       end
       object TabSht_ListRecordsMasterDetail: TTabSheet
@@ -284,7 +278,7 @@ inherited ModelCRUDView: TModelCRUDView
         object Splitter1: TSplitter
           Left = 0
           Top = 173
-          Width = 721
+          Width = 715
           Height = 9
           Cursor = crVSplit
           Align = alTop
@@ -294,20 +288,20 @@ inherited ModelCRUDView: TModelCRUDView
         end
         object DBNavCRUDDetail: TDBNavigator
           Left = 0
-          Top = 382
-          Width = 721
+          Top = 373
+          Width = 715
           Height = 25
           DataSource = DtaSrcCRUDDetail
           Align = alBottom
           TabOrder = 0
-          ExplicitTop = 369
-          ExplicitWidth = 643
+          ExplicitTop = 364
+          ExplicitWidth = 709
         end
         object DBGrdCRUDDetail: TDBGrid
           Left = 0
           Top = 182
-          Width = 721
-          Height = 200
+          Width = 715
+          Height = 191
           Align = alClient
           BorderStyle = bsNone
           DataSource = DtaSrcCRUDDetail
@@ -323,16 +317,16 @@ inherited ModelCRUDView: TModelCRUDView
         object PnlCRUDMaster: TPanel
           Left = 0
           Top = 0
-          Width = 721
+          Width = 715
           Height = 173
           Align = alTop
           BevelOuter = bvSpace
           TabOrder = 2
-          ExplicitWidth = 643
+          ExplicitWidth = 709
           object DBGrdCRUDMaster: TDBGrid
             Left = 1
             Top = 1
-            Width = 719
+            Width = 713
             Height = 146
             Align = alClient
             BorderStyle = bsNone
@@ -349,12 +343,12 @@ inherited ModelCRUDView: TModelCRUDView
           object DBNavCRUDMaster: TDBNavigator
             Left = 1
             Top = 147
-            Width = 719
+            Width = 713
             Height = 25
             DataSource = DtaSrcCRUDMaster
             Align = alBottom
             TabOrder = 1
-            ExplicitWidth = 641
+            ExplicitWidth = 707
           end
         end
       end

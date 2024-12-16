@@ -113,10 +113,6 @@
             <Form>MainView</Form>
             <FormType>dfm</FormType>
         </DCCReference>
-        <DCCReference Include="SourceCode\View\Client.View.Prototype.pas">
-            <Form>ClientViewPrototype</Form>
-            <FormType>dfm</FormType>
-        </DCCReference>
         <DCCReference Include="SourceCode\View\Base.Model.View.pas">
             <Form>BaseModelView</Form>
             <FormType>dfm</FormType>

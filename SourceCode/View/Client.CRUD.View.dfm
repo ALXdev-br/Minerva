@@ -20,7 +20,9 @@ inherited ClientCRUDView: TClientCRUDView
     ExplicitWidth = 710
     inherited PgeCtrView: TPageControl
       Width = 714
-      ExplicitWidth = 708
+      Height = 428
+      ActivePage = TabSht_ListRecords
+      ExplicitWidth = 714
       inherited TabSht_ListRecords: TTabSheet
         Caption = 'Clients'
         ExplicitWidth = 706
@@ -99,7 +101,6 @@ inherited ClientCRUDView: TClientCRUDView
           Width = 706
           VisibleButtons = [nbFirst, nbPrior, nbNext, nbLast, nbCancel]
           Hints.Strings = ()
-          ExplicitTop = 364
           ExplicitWidth = 700
         end
       end
@@ -112,7 +113,7 @@ inherited ClientCRUDView: TClientCRUDView
         inherited DBNavCRUDDetail: TDBNavigator
           Width = 706
           Hints.Strings = ()
-          ExplicitTop = 373
+          ExplicitTop = 382
           ExplicitWidth = 706
         end
         inherited DBGrdCRUDDetail: TDBGrid
