@@ -16,6 +16,7 @@ type
   TClientCRUDView = class(TModelCRUDView)
     procedure FormCreate(Sender: TObject);
     procedure ActRecordPrintExecute(Sender: TObject);
+    procedure ActRecordSaveExecute(Sender: TObject);
   private
     procedure SearchRecord; virtual;
   public
@@ -43,6 +44,16 @@ begin
       FreeAndNil(ClientRpt);
   end;
 
+end;
+
+procedure TClientCRUDView.ActRecordSaveExecute(Sender: TObject);
+var
+  varId:Variant;
+begin
+  inherited;
+  //varId := FDataSourceDefaultView.DataSet.FindField('cod_order').Value;
+  varId := DtaSrcModelCRUDView.DataSet.FieldByName('cod_client').Value;
+  FEntity.ID := varId;
 end;
 
 procedure TClientCRUDView.FormCreate(Sender: TObject);

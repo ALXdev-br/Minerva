@@ -242,12 +242,16 @@ begin
 
       if varActionStr <> '' then
       begin
-        if MessageDlg(Format('Confirm %s record? ',[varActionStr]),mtConfirmation,[mbYes, mbNo], 0, mbNo) = mrYes then
-        begin
-           FDataSourceDefaultView.DataSet.Post;
-           varId := FDataSourceDefaultView.DataSet.FindField('cod_order').Value;
-           FEntity.ID := varId;
-        end;
+        if FDataSourceDefaultView.DataSet.State in [dsEdit, dsInsert] then
+          if MessageDlg(Format('Confirm %s record? ',[varActionStr]),mtConfirmation,[mbYes, mbNo], 0, mbNo) = mrYes then
+          begin
+             FDataSourceDefaultView.DataSet.Post;
+             //varId := FDataSourceDefaultView.DataSet.FindField('cod_order').Value;
+             //varId := FDataSourceDefaultView.DataSet.FieldByName('cod_order').Value;
+             //FEntity.ID := varId;
+          end
+          else
+            FDataSourceDefaultView.DataSet.Cancel;
        end;
     end;
   end;

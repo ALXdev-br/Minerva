@@ -1,30 +1,27 @@
 inherited ModelCRUDView: TModelCRUDView
   Caption = 'ModelCRUDView'
-  ClientHeight = 498
-  ClientWidth = 974
+  ClientHeight = 489
+  ClientWidth = 968
   Position = poOwnerFormCenter
   ExplicitWidth = 986
   ExplicitHeight = 561
   TextHeight = 15
   object StatusBar1: TStatusBar [0]
     Left = 0
-    Top = 479
-    Width = 974
+    Top = 470
+    Width = 968
     Height = 19
     Panels = <>
     ParentShowHint = False
     ShowHint = True
     SimplePanel = True
-    ExplicitTop = 470
-    ExplicitWidth = 968
   end
   object TitleBarPanel1: TTitleBarPanel [1]
     Left = 0
     Top = 0
-    Width = 974
+    Width = 968
     Height = 49
     CustomButtons = <>
-    ExplicitWidth = 968
     object StatusBar2: TStatusBar
       Left = 0
       Top = 30
@@ -38,7 +35,7 @@ inherited ModelCRUDView: TModelCRUDView
     Left = 0
     Top = 49
     Width = 249
-    Height = 430
+    Height = 421
     VertScrollBar.Tracking = True
     HeaderFont.Charset = DEFAULT_CHARSET
     HeaderFont.Color = clWindowText
@@ -46,7 +43,7 @@ inherited ModelCRUDView: TModelCRUDView
     HeaderFont.Name = 'Segoe UI'
     HeaderFont.Style = []
     TabOrder = 2
-    ExplicitHeight = 421
+    ExplicitHeight = 430
     object CategoryPanel1: TCategoryPanel
       Top = 0
       Height = 353
@@ -58,6 +55,7 @@ inherited ModelCRUDView: TModelCRUDView
       Font.Style = [fsBold]
       ParentFont = False
       TabOrder = 0
+      ExplicitWidth = 245
       object BtnRecordUpdate: TButton
         Left = 0
         Top = 130
@@ -206,6 +204,7 @@ inherited ModelCRUDView: TModelCRUDView
       Font.Style = [fsBold]
       ParentFont = False
       TabOrder = 1
+      ExplicitWidth = 245
       object BtnPrint: TButton
         Left = 0
         Top = 0
@@ -226,13 +225,11 @@ inherited ModelCRUDView: TModelCRUDView
   object Panel2: TPanel [3]
     Left = 249
     Top = 49
-    Width = 725
-    Height = 430
+    Width = 719
+    Height = 421
     Align = alClient
     Caption = 'Panel2'
     TabOrder = 3
-    ExplicitWidth = 719
-    ExplicitHeight = 421
     object PgeCtrView: TPageControl
       Left = 1
       Top = 1
